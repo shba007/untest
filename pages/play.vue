@@ -1,34 +1,36 @@
 <script setup lang="ts">
-const items = ref([{
-	"id": "20",
-	"question": "Which artery supplies oxygenated blood to the stomach",
-	"options": [
-		"Carotid artery",
-		"Gastric artery",
-		"Celiac artery",
-		"Cephalic artery"
-	],
-	"answer": 3,
-	"categories": [
-		"biology"
-	]
-}, {
-	"id": "21",
-	"question": "Five words are given below. Four of them are similar. Choose the word which is not similar to the remaining: Paper, Wool, Wood, Plastic, Leather",
-	"options": [
-		"Paper",
-		"Wool",
-		"Wood",
-		"Plastic"
-	],
-	"answer": 4,
-	"categories": [
-		"logic"
-	]
-}])
+import { questions } from "~/utils/qns";
 
-const { count, inc } = useCounter(0, { min: 0, max: 1 })
-const item = computed(() => items.value[count.value])
+function shuffle<T>(array: T[]): T[] {
+	const shuffledArray = [...array];
+
+	for (let i = shuffledArray.length - 1; i > 0; i--) {
+		const j = Math.floor(Math.random() * (i + 1));
+		[shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+	}
+
+	return shuffledArray;
+}
+
+const router = useRouter()
+const route = useRoute()
+const topic = route.query.topic?.toString() ?? ''
+
+const items = ref(shuffle(questions.filter(({ categories }) => categories.includes(topic))))
+
+const { count: correctCount, inc: incCorrect } = useCounter(0, { min: 0, max: 10 })
+const { count: incorrectCount, inc: incIncorrect } = useCounter(0, { min: 0, max: 10 })
+const totalCount = computed(() => correctCount.value + incorrectCount.value)
+const score = ref({
+	correct: 0,
+	incorrect: 0
+})
+const scores = computed(() => ({
+	opponent: { score: score.value.incorrect, question: incorrectCount.value + 1 },
+	player: { score: score.value.correct, question: correctCount.value + 1 }
+}))
+
+const item = computed(() => items.value[totalCount.value])
 
 const selectedAnswer = ref<number>()
 const isSubmitted = ref(false)
@@ -44,18 +46,32 @@ const now = useNow({ interval: 500 })
 const future = ref<number>()
 const remaining = computed(() => Math.max(future.value ? (future.value - now.value.getTime()) / 1000 : 0, 0))
 
-function onSubmit() {
-	isSubmitted.value = true
-	future.value = now.value.getTime() + 2000
-}
-
 watch(remaining, () => {
 	if (remaining.value === 0) {
-		inc()
+		if (selectedAnswer.value === item.value.answer)
+			incCorrect()
+		else
+			incIncorrect()
+
 		selectedAnswer.value = undefined
 		isSubmitted.value = false
 	}
 })
+
+watch(totalCount, () => {
+	if (totalCount.value >= 10)
+		router.replace({ path: '/result', query: { score: scores.value.player.score } })
+})
+
+function onSubmit() {
+	isSubmitted.value = true
+	future.value = now.value.getTime() + 2000
+
+	if (selectedAnswer.value === item.value.answer)
+		score.value.correct++
+	else
+		score.value.incorrect++
+}
 
 function calculateState(index: number) {
 	if (selectedAnswer.value !== undefined && isSubmitted.value && index + 1 === item.value.answer)
@@ -73,14 +89,12 @@ function calculateState(index: number) {
 
 <template>
 	<main class="flex-1 relative flex flex-col gap-4">
-		<GameBar />
-		<span class="opacity-50">Question {{ count + 1 }}/10</span>
-		<Transition mode="out-in" enter-active-class="transition duration-300 ease-out"
-			enter-from-class="transform translate-x-20 scale-95 opacity-0"
-			enter-to-class="transform translate-x-0 scale-100 opacity-100"
-			leave-active-class="transition duration-300 ease-in"
-			leave-from-class="transform translate-x-0 scale-100 opacity-100"
-			leave-to-class="transform -translate-x-20 scale-95 opacity-0">
+		<GameBar :opponent="scores.opponent" :player="scores.player" />
+		<span class="opacity-50">Question {{ totalCount + 1 }}/10</span>
+		<Transition mode="out-in" enter-active-class="transition duration-200 ease-out"
+			enter-from-class="transform translate-x-20  opacity-0" enter-to-class="transform translate-x-0 opacity-100"
+			leave-active-class="transition duration-200 ease-in" leave-from-class="transform translate-x-0  opacity-100"
+			leave-to-class="transform -translate-x-20  opacity-0">
 			<div class="flex-1 flex flex-col" :key="item.id">
 				<h1 class="grow text-2xl font-medium">{{ item.question }}</h1>
 				<ul class="grow flex flex-col gap-6">

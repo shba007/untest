@@ -10,7 +10,6 @@ useHead({
   </NuxtLayout>
 </template>
 
-
 <style>
 * {
   -webkit-font-smoothing: antialiased;
@@ -21,5 +20,9 @@ useHead({
   /* IE and Edge */
   scrollbar-width: none;
   /* Firefox */
+}
+
+.nuxt-icon>svg {
+  @apply !m-0;
 }
 </style>
