@@ -293,4 +293,204 @@ export const questions = [
 			"logic"
 		]
 	},
+	{
+		"id": "22",
+		"categories": [
+
+		]
+	},
+	{
+		"id": "23",
+		"categories": [
+
+		]
+	},
+	{
+		"id": "24",
+		"categories": [
+
+		]
+	},
+	{
+		"id": "25",
+		"question": "Which nutrient is not found in eggs",
+		"options": [
+			"Carbohydrate and Vitamin-C",
+			"Protein and calcium",
+			"Fat and Vitamin-D",
+			"Protein and Iron"
+		],
+		"answer": 1,
+		"categories": [
+			"biology"
+		]
+	},
+	{
+		"id": "26",
+		"question": "Which of the following is not a symptom of depression",
+		"options": [
+			"Loss of interest in daily activities",
+			"lusion of guilt",
+			"Suicidal ideas",
+			"Delusion of grandiosity"
+		],
+		"answer": 4,
+		"categories": [
+			"psychology"
+		]
+	},
+	{
+		"id": "27",
+		"question": "The g of management of Glaucoma is",
+		"options": [
+			"Only to increase the inflow of aqueous humor",
+			"Only to increase the outflow of aqueous humor",
+			"Only to increase the production of aqueous humor",
+			"All of these"
+		],
+		"answer": 1,
+		"categories": [
+			"biology"
+		]
+	},
+	// 28-32
+	{
+		"id": "33",
+		"question": "Out of the \"chemical forces\" bonds listed below, the strongest one is",
+		"options": [
+			"Van der waal's",
+			"Dipole",
+			"Covalent",
+			"Hydrophobic"
+		],
+		"answer": 2,
+		"categories": [
+			"chemistry"
+		]
+	},
+	{
+		"id": "34",
+		"question": "Which valve prevents backward flow of blood into the left atrium",
+		"options": [
+			"Aortic valve",
+			"Pulmonary valve",
+			"Tricuspid valve",
+			"Mitral valve"
+		],
+		"answer": 4,
+		"categories": [
+			"biology"
+		]
+	},
+	{
+		"id": "35",
+		"question": "The _____ membranes surround the lungs",
+		"options": [
+			"pericardial",
+			"mediastinal",
+			"pleural",
+			"peritoneal"
+		],
+		"answer": 3,
+		"categories": [
+			"biology"
+		]
+	},
+	{
+		"id": "36",
+		"question": "When two numbers are separately divided by 33 the remainders are 21 and 28 respectively. If the sum of the two numbers is divided by 33 the remainder will be",
+		"options": [
+			"10",
+			"12",
+			"14",
+			"16"
+		],
+		"answer": 4,
+		"categories": [
+			"mathematics"
+		]
+	},
+	{
+		"id": "42",
+		"question": "Find the next number in the series 11, 16, 23, 32, 43, _____",
+		"options": [
+			"56",
+			"55",
+			"57",
+			"54"
+		],
+		"answer": 1,
+		"categories": [
+			"mathematics"
+		]
+	},
+	{
+		"id": "43",
+		"question": "Find the next number in the series 885, 870, 855, 840, _____",
+		"options": [
+			"835",
+			"855",
+			"825",
+			"815"
+		],
+		"answer": 3,
+		"categories": [
+			"mathematics"
+		]
+	},
+	{
+		"id": "52",
+		"question": "A bag contains 90, comprising 50 paisa, 25 paisa and 10 paisa coins. If the ratio of 50 paise, 25 paise and 10 paise coins is : 3 : 5, then the number of 25 paisa coins will be",
+		"options": [
+			"80",
+			"120",
+			"100",
+			"135"
+		],
+		"answer": 2,
+		"categories": [
+			"mathematics"
+		]
+	},
+	{
+		"id": "54",
+		"question": "A and B can do a job in 72 days. B and C can do the same job in 120 days, and A and C can do the same job in 90 days. In how many days will a the three take to complete the job ?",
+		"options": [
+			"80 days",
+			"100 days",
+			"60 days",
+			"150 days"
+		],
+		"answer": 3,
+		"categories": [
+			"mathematics"
+		]
+	},
+	{
+		"id": "61",
+		"question": "If the cost price of 10 chairs is equal to the selling price of 16 chairs, then the loss percent is",
+		"options": [
+			"37.5%",
+			"20%",
+			"9.6%",
+			"17.5%"
+		],
+		"answer": 1,
+		"categories": [
+			"mathematics"
+		]
+	}, {
+		"id": "62",
+		"question": "Out of four numbers, the average of first 3 is 15 and the average of the last 3 is 16. If the last number is 19, the first number is",
+		"options": [
+			"19",
+			"15",
+			"16",
+			"18"
+		],
+		"answer": 3,
+		"categories": [
+			"mathematics"
+		]
+	},
 ]

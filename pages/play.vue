@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { questions } from "~/utils/qns";
+import { questions } from "~/utils/qna";
 
 function shuffle<T>(array: T[]): T[] {
 	const shuffledArray = [...array];

@@ -1,23 +1,23 @@
 <script setup lang="ts">
-const topics = ref([{
+const topics = ref([/* {
 	name: 'physics',
 	icon: 'atom',
-}, {
-	name: 'biology',
-	icon: 'dna',
-}, {
-	name: 'chemistry',
-	icon: 'flask',
-}, {
-	name: 'mathematics',
-	icon: 'formula',
-}])
+}, */ {
+		name: 'biology',
+		icon: 'dna',
+	}, /* {
+		name: 'chemistry',
+		icon: 'flask',
+	}, */ {
+		name: 'mathematics',
+		icon: 'formula',
+	}])
 </script>
 
 <template>
 	<main class="flex flex-col gap-2">
 		<h2 class="text-xl font-medium">Topics</h2>
-		<div class="grid gap-3 grid-cols-3">
+		<div class="flex justify-between flex-wrap">
 			<TopicCard v-for="{ name, icon } in topics" :key="name" :name="name" :icon="icon" />
 		</div>
 		<!-- <h2 class="text-xl font-medium">Topic</h2>
