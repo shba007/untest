@@ -16,7 +16,7 @@ const topics = ref([/* {
 
 <template>
 	<main class="flex flex-col gap-2">
-		<h2 class="text-xl font-medium">Topics</h2>
+		<h2 class="text-xl font-medium mx-auto">Topics</h2>
 		<div class="flex justify-between flex-wrap">
 			<TopicCard v-for="{ name, icon } in topics" :key="name" :name="name" :icon="icon" />
 		</div>

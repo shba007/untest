@@ -7,7 +7,8 @@ const props = defineProps<{
 
 <template>
 	<NuxtLink :to="`/play?topic=${name}`"
-		class="relative flex justify-center items-center w-[100px] h-[100px] m-2 bg-slate-300 rounded-lg">
+		class="relative flex flex-col justify-center items-center size-28 m-2 bg-slate-300 rounded-lg">
 		<NuxtIcon :name="icon" class="text-[64px]" />
+		<span class="capitalize">{{ name }}</span>
 	</NuxtLink>
 </template>

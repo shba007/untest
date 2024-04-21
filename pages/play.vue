@@ -60,7 +60,7 @@ watch(remaining, () => {
 
 watch(totalCount, () => {
 	if (totalCount.value >= 10)
-		router.replace({ path: '/result', query: { score: scores.value.player.score } })
+		router.replace({ path: '/result', query: { right: scores.value.player.score, wrong: scores.value.opponent.score } })
 })
 
 function onSubmit() {
@@ -99,8 +99,7 @@ function calculateState(index: number) {
 				<h1 class="grow text-2xl font-medium">{{ item.question }}</h1>
 				<ul class="grow flex flex-col gap-6">
 					<li v-for="option, index in item.options">
-						<Option :index="index + 1" :value="option" :state="calculateState(index)"
-							@click="onOptionChange(index)" />
+						<Option :index="index + 1" :value="option" :state="calculateState(index)" @click="onOptionChange(index)" />
 					</li>
 				</ul>
 			</div>

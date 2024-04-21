@@ -2,7 +2,7 @@
 import { breakpointsTailwind } from '@vueuse/core';
 
 useHead({
-  titleTemplate: (titleChunk) => (titleChunk ? `Compeer - ${titleChunk}` : 'Compeer')
+  titleTemplate: (titleChunk) => (titleChunk ? `Compeer - ${titleChunk}` : 'Compeer'),
 })
 const breakpoints = useBreakpoints(breakpointsTailwind)
 const isMobile = ref(true)

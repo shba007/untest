@@ -1,5 +1,14 @@
-Hackathon: Bay Area Hacks 1
+<p align="center">
+  <img src="./public/logo.png" lt="Logo" width="65" />
+<p>
 
-Deadline: Jun 25, 2023 @ 12:00pm PDT
+# Compeer
+> A Peer to Peer QnA Game
 
-Answer is 1,2,3,4
+<p align="center">
+  <a href="https://uptime.betterstack.com/?utm_source=status_badge">
+    <img src="https://uptime.betterstack.com/status-badges/v3/monitor/10aqw.svg" alt="uptime status">
+  </a>
+</p>
+
+![Landing](public/previews/landing.webp)
