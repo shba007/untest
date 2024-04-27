@@ -1,31 +1,9 @@
-<script setup lang="ts">
-import { breakpointsTailwind } from '@vueuse/core';
-
-useHead({
-  titleTemplate: (titleChunk) => (titleChunk ? `Compeer - ${titleChunk}` : 'Compeer'),
-})
-const breakpoints = useBreakpoints(breakpointsTailwind)
-const isMobile = ref(true)
-
-watchEffect(() => {
-  if (process.client)
-    isMobile.value = breakpoints.smaller('sm').value
-})
-</script>
-
 <template>
-  <div v-show="isMobile">
+  <div>
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
   </div>
-  <main v-show="!isMobile" class="flex flex-col gap-4 justify-center items-center w-screen h-screen">
-    <!-- TODO: Improve Notice -->
-    <div>
-      <h1>The Desktop site is Under Development</h1>
-      <h2>Please use your Mobile to Visit</h2>
-    </div>
-  </main>
 </template>
 
 <style>
@@ -33,14 +11,38 @@ watchEffect(() => {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-tap-highlight-color: transparent;
-  /* Hide scrollbar for IE, Edge and Firefox */
-  -ms-overflow-style: none;
-  /* IE and Edge */
-  scrollbar-width: none;
-  /* Firefox */
+  scrollbar-width: 6px
+}
+
+*::-webkit-scrollbar {
+  @apply block w-[6px] bg-dark-400;
+}
+
+*::-webkit-scrollbar-thumb {
+  @apply rounded-md bg-dark-600;
+}
+
+html {
+  @apply relative scroll-smooth overflow-x-hidden;
+}
+
+body {
+  @apply relative min-h-screen text-white bg-dark-400 overflow-x-hidden;
 }
 
 .nuxt-icon>svg {
   @apply !m-0;
+}
+
+.scrollbar-hidden {
+  -ms-overflow-style: none;
+  /* Internet Explorer 10+ */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+  /* Safari and Chrome */
 }
 </style>

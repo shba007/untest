@@ -1,8 +1,7 @@
 <template>
-  <div class="relative flex flex-col h-screen">
-    <NuxtLoadingIndicator color="#2563EB" />
-    <div class="relative flex flex-col px-4 py-8 h-full ">
-      <slot />
-    </div>
-  </div>
+	<div class="flex flex-col p-6 h-screen">
+		<!-- <AppHeader /> -->
+		<slot />
+		<!-- <AppFooter /> -->
+	</div>
 </template>

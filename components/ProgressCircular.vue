@@ -19,12 +19,12 @@ const percentage = computed(() => {
 <template>
   <div
     :class="{ 'absolute top-1/2 -translate-y-1/2 left-0 -translate-x-[50%] w-[7rem]': side === 'L', 'absolute top-1/2 -translate-y-1/2 right-0 translate-x-[50%] w-[7rem]': side === 'R', 'border border-dashed border-black scale-75': side === undefined }"
-    class="flex items-center justify-center rounded-full bg-gray-900 aspect-square">
+    class="flex items-center justify-center rounded-full bg-dark-400 aspect-square">
     <div class="relative w-fit h-fit">
       <svg width="96" height="96" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
         <circle cx="48" cy="48" r="43.2" class="stroke-white" stroke-width="6" />
         <circle cx="48" cy="48" r="43.2" stroke-linecap="round"
-          :class="{ 'stroke-rose-500': side === 'L', 'stroke-blue-500': side === 'R', 'stroke-emerald-500': side === undefined }"
+          :class="{ 'stroke-alert-500': side === 'L', 'stroke-primary-400': side === 'R', 'stroke-success-500': side === undefined }"
           stroke-width="6" stroke-dasharray="270" :stroke-dashoffset="(side === 'L' ? -1 : 1) * 270 * (1 - percentage)"
           :transform="`rotate(${side === undefined ? '-' : ''}90 48 48)`" />
       </svg>

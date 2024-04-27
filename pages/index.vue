@@ -1,28 +1,6 @@
-<script setup lang="ts">
-const topics = ref([/* {
-	name: 'physics',
-	icon: 'atom',
-}, */ {
-		name: 'biology',
-		icon: 'dna',
-	}, /* {
-		name: 'chemistry',
-		icon: 'flask',
-	}, */ {
-		name: 'mathematics',
-		icon: 'formula',
-	}])
-</script>
-
 <template>
-	<main class="flex flex-col gap-2">
-		<h2 class="text-xl font-medium mx-auto">Topics</h2>
-		<div class="flex justify-between flex-wrap">
-			<TopicCard v-for="{ name, icon } in topics" :key="name" :name="name" :icon="icon" />
-		</div>
-		<!-- <h2 class="text-xl font-medium">Topic</h2>
-		<div class="grid gap-3 grid-cols-3">
-			<ExamCard v-for="exam in exams" />
-		</div> -->
+	<main class="flex flex-col gap-2 items-center justify-center h-screen">
+		<h1 class="my-auto text-xl text-center align-middle">Welcome to Compeer</h1>
+		<AppButton title="Next" href="/menu" />
 	</main>
 </template>

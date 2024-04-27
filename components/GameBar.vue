@@ -21,11 +21,13 @@ const health = computed(() => {
 <template>
 	<div class="relative">
 		<div class="relative flex rounded-lg w-full h-[92px] overflow-hidden">
-			<div class="border-black border-r-[1px] rounded-lg rounded-r-none min-h-max bg-rose-500 transition-[width] ease-out duration-200"
+			<div
+				class="border-black border-r-[1px] rounded-lg rounded-r-none min-h-max bg-alert-500 transition-[width] ease-out duration-200"
 				:style="{ width: `${100 - health}%` }" />
 			<ProgressCircular :total="10" :value="scores.opponent" side="L" />
 			<ProgressCircular :total="10" :value="scores.player" side="R" />
-			<div class="border-black border-l-[1px] rounded-lg rounded-l-none min-h-max bg-blue-500 transition-[width] ease-out duration-200"
+			<div
+				class="border-black border-l-[1px] rounded-lg rounded-l-none min-h-max bg-primary-400 transition-[width] ease-out duration-200"
 				:style="{ width: `${health}%` }">
 			</div>
 		</div>

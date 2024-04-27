@@ -1,5 +1,8 @@
 <script setup lang="ts">
+import type { Stats } from "~/pages/room/[id].vue";
 import { questions } from "~/utils/qna";
+
+const emit = defineEmits<{ (event: 'changeState', data: Stats): void }>()
 
 function shuffle<T>(array: T[]): T[] {
 	const shuffledArray = [...array];
@@ -14,7 +17,7 @@ function shuffle<T>(array: T[]): T[] {
 
 const router = useRouter()
 const route = useRoute()
-const topic = route.query.topic?.toString() ?? ''
+const topic = 'biology'
 
 const items = ref(shuffle(questions.filter(({ categories }) => categories.includes(topic))))
 
@@ -58,11 +61,6 @@ watch(remaining, () => {
 	}
 })
 
-watch(totalCount, () => {
-	if (totalCount.value >= 10)
-		router.replace({ path: '/result', query: { right: scores.value.player.score, wrong: scores.value.opponent.score } })
-})
-
 function onSubmit() {
 	isSubmitted.value = true
 	future.value = now.value.getTime() + 2000
@@ -85,6 +83,21 @@ function calculateState(index: number) {
 	} else
 		return 'neutral'
 }
+
+const time = useInterval(1000)
+
+watch(totalCount, () => {
+	if (totalCount.value >= 10) {
+		emit('changeState',
+			{
+				stand: scores.value.player.score > scores.value.opponent.score ? 'winner' : 'looser',
+				correct: scores.value.player.score, wrong: scores.value.opponent.score,
+				time: time.value + 's'
+			}
+		)
+	}
+})
+
 </script>
 
 <template>
@@ -104,9 +117,7 @@ function calculateState(index: number) {
 				</ul>
 			</div>
 		</Transition>
-		<button class="rounded-2xl p-3 w-full bg-blue-500 text-white text-lg font-medium text-center" @click="onSubmit"
-			:disabled="!!remaining">
-			{{ remaining ? `Next in ${remaining.toFixed(0)}` : 'Submit' }}
-		</button>
+		<AppButton :title="remaining ? `Next in ${remaining.toFixed(0)}` : 'Submit'" :disabled="!!remaining"
+			@submit="onSubmit" />
 	</main>
 </template>
