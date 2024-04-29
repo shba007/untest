@@ -1,14 +1,31 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
-    "./components/**/*.{js,vue,ts}",
-    "./layouts/**/*.vue",
-    "./pages/**/*.vue",
-    "./plugins/**/*.{js,ts}",
-    "./app.vue",
-    "./error.vue",
+    'components/**/*.{vue,js,ts}',
+    'layouts/**/*.vue',
+    'pages/**/*.vue',
+    'App.{js,ts,vue}',
+    'app.{js,ts,vue}',
+    'Error.{js,ts,vue}',
+    'error.{js,ts,vue}',
   ],
+  darkMode: 'class',
   theme: {
+    fontSize: {
+      xs: ['0.75rem', '0.875rem'],
+      sm: ['0.875rem', '1.0625rem'],
+      base: ['1rem', '1.5rem'],
+      lg: ['1.25rem', '1.5625rem'],
+      xl: ['1.5rem', '1.875rem'],
+      '2xl': ['2rem', '2.5rem'],
+      '3xl': ['2.5rem', '3.125rem'],
+      '4xl': ['3rem', '3.625rem'],
+      '5xl': ['3.5rem', '4.1875rem'],
+    },
+    fontFamily: {
+      // head: ['"Exo 2"', 'sans-serif'],
+      // body: ['"Exo 2"', 'sans-serif'],
+    },
     fontWeight: {
       light: 300,
       regular: 400,

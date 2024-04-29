@@ -1,496 +1,199 @@
 export const questions = [
 	{
 		"id": "1",
-		"question": "The characteristic of enantiomers is",
+		"question": "Which of the following research methods is commonly used to estimate the heritability of a",
 		"options": [
-			"only that they are chemically identical",
-			"only that they are mirror images of each other",
-			"both (A) and (B)",
-			"none of these"
+			"Adoption Studies",
+			"Correlational Studies",
+			"Case Studies",
+			"Experimental Studies"
 		],
-		"answer": 2,
-		"categories": [
-			"chemistry"
+		"answer": 1,
+		"tags": [
+			"psychology"
 		]
 	},
 	{
 		"id": "2",
-		"question": "The guardian of the Indian Constitution is the",
+		"question": "Which of the following is a negative symptom of schizophrenia?",
 		"options": [
-			"Supreme Court of India",
-			"High Court",
-			"President of India",
-			"Prime Minister of India"
+			"Hallucinations",
+			"Delusions",
+			"Disorganized speech",
+			"Avolition"
 		],
-		"answer": 1,
-		"categories": [
-			"political-science"
+		"answer": 4,
+		"tags": [
+			"psychology"
 		]
 	},
 	{
 		"id": "3",
-		"question": "Repeated Urination While Sleeping, even after five years of age is called",
+		"question": "Which theoretical perspective in personality psychology emphasizes the role of unconscious conflicts, early childhood experiences, and the influence of the id, ego, and superego?",
 		"options": [
-			"Eneuresis",
-			"Tic",
-			"Stuttering",
-			"Encopresis"
+			"Humanistic perspective",
+			"Trait perspective",
+			"Psychodynamic perspective",
+			"Social-cognitive perspective"
 		],
-		"answer": 1,
-		"categories": [
-			"biology"
+		"answer": 3,
+		"tags": [
+			"psychology"
 		]
 	},
 	{
 		"id": "4",
-		"question": "In a certain code '253' means 'books are old', '546' means 'man is old' and '378' means 'buy good books'. What stands for 'are' in the code",
+		"question": "According to Albert Bandura's social-cognitive theory, which of the following factors is crucial in the development of personality?",
 		"options": [
-			"2",
-			"4",
-			"5",
-			"6"
+			"Genetic predispositions",
+			"Unconscious conflicts",
+			"Observational learning and modeling",
+			"Trait inheritance from parents"
 		],
-		"answer": 1,
-		"categories": [
-			"logic"
+		"answer": 3,
+		"tags": [
+			"psychology"
 		]
 	},
 	{
 		"id": "5",
-		"question": "Atmospheric pressure is important in the process of",
+		"question": "",
 		"options": [
-			"Blood Flow",
-			"Micturition",
-			"Reproduction",
-			"Breathing"
+			"",
+			"",
+			"",
+			""
 		],
-		"answer": 4,
-		"categories": [
-			"general"
+		"answer": 0,
+		"tags": [
+			"psychology"
 		]
 	},
 	{
 		"id": "6",
-		"question": "In a certain code, if BHOPAL is written as EERMDI, then how will POWDER be written in the same code",
+		"question": "According to the Five-Factor Model of personality, which of the following traits is associated with a high level of imagination, curiosity, and openness to new experiences",
 		"options": [
-			"SLZAHO",
-			"SRZGHU",
-			"NMUBCP",
-			"NRUGCU"
+			"Neuroticism",
+			"Extraversion",
+			"Openness",
+			"Agreeableness"
 		],
-		"answer": 1,
-		"categories": [
-			"logic"
+		"answer": 3,
+		"tags": [
+			"psychology"
 		]
 	},
 	{
 		"id": "7",
-		"question": "The permanent stopping of the menstrual cycle in women is called",
+		"question": "Jason is so preoccupied with staying clean that he showers as many times as 10 times each day. Jason would be diagnosed as suffering from what?",
 		"options": [
-			"Menopause",
-			"Menarche",
-			"Dismenorrhea",
-			"Amenorrhea"
+			"ADHD",
+			"OCD",
+			"Schizophrenia",
+			"Phobia"
 		],
-		"answer": 1,
-		"categories": [
-			"biology"
+		"answer": 2,
+		"tags": [
+			"psychology"
 		]
 	},
 	{
 		"id": "8",
-		"question": "Which of the following vitamins is soluble in water",
+		"question": "Which stage of Erik Erikson's psychosocial development theory occurs during infancy?",
 		"options": [
-			"Vitamin A",
-			"Vitamin C",
-			"Vitamin K",
-			"Vitamin D"
+			"Identity vs. Role Confusion",
+			"Intimacy vs. Isolation",
+			"Trust vs. Mistrust",
+			"Autonomy vs. Shame and Doubt"
 		],
-		"answer": 2,
-		"categories": [
-			"biology"
+		"answer": 3,
+		"tags": [
+			"psychology"
 		]
 	},
 	{
 		"id": "9",
-		"question": "A is 40 metres south-west of B, C is 40 meters south-east of B, then C is in which direction from A",
+		"question": "According to Lawrence Kohlberg, at which stage of moral development do individuals make decisions based on self-interest and personal gain?",
 		"options": [
-			"South",
-			"West",
-			"East",
-			"North-East"
+			"Preconventional level",
+			"Conventional level",
+			"Postconventional level",
+			"Principled level"
 		],
-		"answer": 3,
-		"categories": [
-			"logic"
+		"answer": 1,
+		"tags": [
+			"psychology"
 		]
 	},
 	{
 		"id": "10",
-		"question": "The Aligarh Muslim University was founded by",
+		"question": "Which of the following best defines the term \"development\" in the context of lifespan psychology?",
 		"options": [
-			"Dr. Saifuddin Kichlu",
-			"Sir Syed Ahmad Khan",
-			"Mohmmad Ali Jinnah",
-			"Maulana Mohammad Ali"
+			"The process of aging & physical maturation",
+			"The growth & changes that occur throughout a person's life",
+			"The development of cognitive abilities only",
+			"The process of reaching adulthood"
 		],
 		"answer": 2,
-		"categories": [
-			"history"
+		"tags": [
+			"psychology"
 		]
 	},
-	{
+	// 
+	/* {
 		"id": "11",
-		"question": "Of the following, which is the most common site for metastasis in lung cancer",
+		"question": "Which of the following is NOT a major milestone of cognitive development in Piaget's theory?",
 		"options": [
-			"Kidney",
-			"Stomach",
-			"Liver",
-			"Spleen"
+			"",
+			"",
+			"",
+			""
 		],
-		"answer": 3,
-		"categories": [
-			"biology"
+		"answer": 0,
+		"tags": [
+			"psychology"
 		]
 	},
 	{
 		"id": "12",
-		"question": "Express 45 minutes as a fraction of a day",
+		"question": "A psychotic person would probably score the highest on which MMPI-2 scale?",
 		"options": [
-			"1/32",
-			"1/40",
-			"1/60",
-			"1/24"
+			"Depression",
+			"Hysteria",
+			"Schizophrenia",
+			"Mania"
 		],
-		"answer": 1,
-		"categories": [
-			"mathematics"
+		"answer": 0,
+		"tags": [
+			"psychology"
 		]
 	},
 	{
 		"id": "13",
-		"question": "When are the chances of acute endometritis developing in a woman",
+		"question": "Limbic system, Basal ganglia and Corpus striatum are pasts of which section of the brain?",
 		"options": [
-			"after menopause",
-			"after menarche",
-			"after abortion or childbirth",
-			"in childhood"
+			"",
+			"",
+			"",
+			""
 		],
-		"answer": 3,
-		"categories": [
-			"biology"
+		"answer": 0,
+		"tags": [
+			"psychology"
 		]
 	},
 	{
 		"id": "14",
-		"question": "Psychoanalytic Therapy was developed by",
+		"question": "",
 		"options": [
-			"Sigmund Freud",
-			"Jacobson",
-			"Franklin",
-			"Aristotle"
+			"",
+			"",
+			"",
+			""
 		],
-		"answer": 1,
-		"categories": [
+		"answer": 0,
+		"tags": [
 			"psychology"
 		]
-	},
-	{
-		"id": "15",
-		"question": "What should be the temperature of water used for cold sponging",
-		"options": [
-			"98 F",
-			"105 F",
-			"70 F",
-			"0 F"
-		],
-		"answer": 3,
-		"categories": [
-			"nursing"
-		]
-	},
-	{
-		"id": "16",
-		"question": "A train running at a speed of 30 meters/sec crosses a platflorm 600 meters long in 30 seconds. The length of the train is",
-		"options": [
-			"120 meters",
-			"150 meters",
-			"200 meters",
-			"300 meters"
-		],
-		"answer": 4,
-		"categories": [
-			"mathematics"
-		]
-	},
-	{
-		"id": "17",
-		"question": "Which of the following is not found in urine",
-		"options": [
-			"Only glucose",
-			"Only protein",
-			"Only Red blood cells",
-			"All of the above"
-		],
-		"answer": 4,
-		"categories": [
-			"biology"
-		]
-	},
-	{
-		"id": "18",
-		"question": "Which of these fractions is the largest",
-		"options": [
-			"6/7",
-			"5/6",
-			"7/8",
-			"4/5"
-		],
-		"answer": 3,
-		"categories": [
-			"mathematics"
-		]
-	},
-	{
-		"id": "19",
-		"question": "Hallucination is caused by",
-		"options": [
-			"Gastro-intestinal disorder",
-			"Mental illness",
-			"Disorder of reproductive organs",
-			"Infectious disease"
-		],
-		"answer": 2,
-		"categories": [
-			"psychology"
-		]
-	},
-	{
-		"id": "20",
-		"question": "Which artery supplies oxygenated blood to the stomach",
-		"options": [
-			"Carotid artery",
-			"Gastric artery",
-			"Celiac artery",
-			"Cephalic artery"
-		],
-		"answer": 3,
-		"categories": [
-			"biology"
-		]
-	},
-	{
-		"id": "21",
-		"question": "Five words are given below. Four of them are similar. Choose the word which is not similar to the remaining: Paper, Wool, Wood, Plastic, Leather",
-		"options": [
-			"Paper",
-			"Wool",
-			"Wood",
-			"Plastic"
-		],
-		"answer": 4,
-		"categories": [
-			"logic"
-		]
-	},
-	{
-		"id": "22",
-		"categories": [
-
-		]
-	},
-	{
-		"id": "23",
-		"categories": [
-
-		]
-	},
-	{
-		"id": "24",
-		"categories": [
-
-		]
-	},
-	{
-		"id": "25",
-		"question": "Which nutrient is not found in eggs",
-		"options": [
-			"Carbohydrate and Vitamin-C",
-			"Protein and calcium",
-			"Fat and Vitamin-D",
-			"Protein and Iron"
-		],
-		"answer": 1,
-		"categories": [
-			"biology"
-		]
-	},
-	{
-		"id": "26",
-		"question": "Which of the following is not a symptom of depression",
-		"options": [
-			"Loss of interest in daily activities",
-			"lusion of guilt",
-			"Suicidal ideas",
-			"Delusion of grandiosity"
-		],
-		"answer": 4,
-		"categories": [
-			"psychology"
-		]
-	},
-	{
-		"id": "27",
-		"question": "The g of management of Glaucoma is",
-		"options": [
-			"Only to increase the inflow of aqueous humor",
-			"Only to increase the outflow of aqueous humor",
-			"Only to increase the production of aqueous humor",
-			"All of these"
-		],
-		"answer": 1,
-		"categories": [
-			"biology"
-		]
-	},
-	// 28-32
-	{
-		"id": "33",
-		"question": "Out of the \"chemical forces\" bonds listed below, the strongest one is",
-		"options": [
-			"Van der waal's",
-			"Dipole",
-			"Covalent",
-			"Hydrophobic"
-		],
-		"answer": 2,
-		"categories": [
-			"chemistry"
-		]
-	},
-	{
-		"id": "34",
-		"question": "Which valve prevents backward flow of blood into the left atrium",
-		"options": [
-			"Aortic valve",
-			"Pulmonary valve",
-			"Tricuspid valve",
-			"Mitral valve"
-		],
-		"answer": 4,
-		"categories": [
-			"biology"
-		]
-	},
-	{
-		"id": "35",
-		"question": "The _____ membranes surround the lungs",
-		"options": [
-			"pericardial",
-			"mediastinal",
-			"pleural",
-			"peritoneal"
-		],
-		"answer": 3,
-		"categories": [
-			"biology"
-		]
-	},
-	{
-		"id": "36",
-		"question": "When two numbers are separately divided by 33 the remainders are 21 and 28 respectively. If the sum of the two numbers is divided by 33 the remainder will be",
-		"options": [
-			"10",
-			"12",
-			"14",
-			"16"
-		],
-		"answer": 4,
-		"categories": [
-			"mathematics"
-		]
-	},
-	{
-		"id": "42",
-		"question": "Find the next number in the series 11, 16, 23, 32, 43, _____",
-		"options": [
-			"56",
-			"55",
-			"57",
-			"54"
-		],
-		"answer": 1,
-		"categories": [
-			"mathematics"
-		]
-	},
-	{
-		"id": "43",
-		"question": "Find the next number in the series 885, 870, 855, 840, _____",
-		"options": [
-			"835",
-			"855",
-			"825",
-			"815"
-		],
-		"answer": 3,
-		"categories": [
-			"mathematics"
-		]
-	},
-	{
-		"id": "52",
-		"question": "A bag contains 90, comprising 50 paisa, 25 paisa and 10 paisa coins. If the ratio of 50 paise, 25 paise and 10 paise coins is : 3 : 5, then the number of 25 paisa coins will be",
-		"options": [
-			"80",
-			"120",
-			"100",
-			"135"
-		],
-		"answer": 2,
-		"categories": [
-			"mathematics"
-		]
-	},
-	{
-		"id": "54",
-		"question": "A and B can do a job in 72 days. B and C can do the same job in 120 days, and A and C can do the same job in 90 days. In how many days will a the three take to complete the job ?",
-		"options": [
-			"80 days",
-			"100 days",
-			"60 days",
-			"150 days"
-		],
-		"answer": 3,
-		"categories": [
-			"mathematics"
-		]
-	},
-	{
-		"id": "61",
-		"question": "If the cost price of 10 chairs is equal to the selling price of 16 chairs, then the loss percent is",
-		"options": [
-			"37.5%",
-			"20%",
-			"9.6%",
-			"17.5%"
-		],
-		"answer": 1,
-		"categories": [
-			"mathematics"
-		]
-	}, {
-		"id": "62",
-		"question": "Out of four numbers, the average of first 3 is 15 and the average of the last 3 is 16. If the last number is 19, the first number is",
-		"options": [
-			"19",
-			"15",
-			"16",
-			"18"
-		],
-		"answer": 3,
-		"categories": [
-			"mathematics"
-		]
-	},
+	} */
 ]

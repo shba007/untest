@@ -7,7 +7,7 @@ interface Topic {
 }
 
 const topics = ref<Topic[]>([{
-	topic: 'math',
+	topic: 'mathematics',
 	icon: 'formula'
 }, {
 	topic: 'physics',
@@ -19,7 +19,7 @@ const topics = ref<Topic[]>([{
 	topic: 'biology',
 	icon: 'dna'
 }, {
-	topic: 'math',
+	topic: 'mathematics',
 	icon: 'formula'
 }, {
 	topic: 'physics',
@@ -31,7 +31,7 @@ const topics = ref<Topic[]>([{
 	topic: 'biology',
 	icon: 'dna'
 }, {
-	topic: 'math',
+	topic: 'mathematics',
 	icon: 'formula'
 }, {
 	topic: 'physics',
@@ -45,7 +45,7 @@ const topics = ref<Topic[]>([{
 }])
 
 function createRoom(topic: string) {
-	router.push({ path: 'room/1100DF' })
+	router.push({ path: `room/${topic}` })
 }
 </script>
 
@@ -58,6 +58,6 @@ function createRoom(topic: string) {
 		</section>
 		<span />
 		<h1>Join a Room</h1>
-		<AppInput />
+		<AppInput placeholder="Code" title="Join" />
 	</main>
 </template>

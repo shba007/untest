@@ -7,7 +7,7 @@
     "node": "^20.12.2"
   },
   "scripts": {
-    "dev": "nuxt dev -o",
+    "dev": "nuxt dev",
     "build": "nuxt build",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
@@ -23,10 +23,14 @@
     "@pinia/nuxt": "^0.5.1",
     "@vite-pwa/nuxt": "^0.6.0",
     "@vueuse/nuxt": "^10.9.0",
+    "canvas-confetti": "^1.9.2",
     "nuxt": "^3.11.2",
     "nuxt-gtag": "^2.0.5",
     "nuxt-icons": "^3.2.1",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
+  },
+  "devDependencies": {
+    "@types/canvas-confetti": "^1.6.4"
   }
 }

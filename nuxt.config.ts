@@ -9,9 +9,14 @@ export default defineNuxtConfig({
     "@nuxtjs/seo",
     "@nuxtjs/tailwindcss",
     "@pinia/nuxt",
-    "@vueuse/nuxt",
     "@vite-pwa/nuxt",
+    "@vueuse/nuxt",
     "nuxt-gtag",
     "nuxt-icons",
-  ]
+  ],
+  nitro: {
+    experimental: {
+      websocket: true
+    }
+  }
 })

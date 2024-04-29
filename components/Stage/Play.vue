@@ -2,6 +2,9 @@
 import type { Stats } from "~/pages/room/[id].vue";
 import { questions } from "~/utils/qna";
 
+const props = defineProps<{
+	topic: string;
+}>()
 const emit = defineEmits<{ (event: 'changeState', data: Stats): void }>()
 
 function shuffle<T>(array: T[]): T[] {
@@ -15,11 +18,12 @@ function shuffle<T>(array: T[]): T[] {
 	return shuffledArray;
 }
 
-const router = useRouter()
-const route = useRoute()
-const topic = 'biology'
+// const route = useRoute()
+// console.log(route.params)
+// const topic = route.params?.id || 'biology'
 
-const items = ref(shuffle(questions.filter(({ categories }) => categories.includes(topic))))
+// const items = ref(shuffle(questions.filter(({ categories }) => categories.includes(props.topic))))
+const items = ref(shuffle(questions))
 
 const { count: correctCount, inc: incCorrect } = useCounter(0, { min: 0, max: 10 })
 const { count: incorrectCount, inc: incIncorrect } = useCounter(0, { min: 0, max: 10 })
@@ -87,7 +91,7 @@ function calculateState(index: number) {
 const time = useInterval(1000)
 
 watch(totalCount, () => {
-	if (totalCount.value >= 10) {
+	if (totalCount.value >= 2) {
 		emit('changeState',
 			{
 				stand: scores.value.player.score > scores.value.opponent.score ? 'winner' : 'looser',
@@ -109,7 +113,7 @@ watch(totalCount, () => {
 			leave-active-class="transition duration-200 ease-in" leave-from-class="transform translate-x-0  opacity-100"
 			leave-to-class="transform -translate-x-20  opacity-0">
 			<div class="flex-1 flex flex-col" :key="item.id">
-				<h1 class="grow text-2xl font-medium">{{ item.question }}</h1>
+				<h1 class="grow text-xl font-medium">{{ item.question }}</h1>
 				<ul class="grow flex flex-col gap-6">
 					<li v-for="option, index in item.options">
 						<Option :index="index + 1" :value="option" :state="calculateState(index)" @click="onOptionChange(index)" />
