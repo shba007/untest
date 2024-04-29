@@ -57,14 +57,14 @@ export const questions = [
 	},
 	{
 		"id": "5",
-		"question": "",
+		"question": "Unconditional positive regard is associated with",
 		"options": [
-			"",
-			"",
-			"",
-			""
+			"Wolpe's systematic desensitization therapy",
+			"Ellis's rational-emotive therapy",
+			"Beck's cognitive therapy",
+			"Rogers' client-centered therapy"
 		],
-		"answer": 0,
+		"answer": 4,
 		"tags": [
 			"psychology"
 		]

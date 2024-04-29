@@ -91,7 +91,7 @@ function calculateState(index: number) {
 const time = useInterval(1000)
 
 watch(totalCount, () => {
-	if (totalCount.value >= 2) {
+	if (totalCount.value >= 10) {
 		emit('changeState',
 			{
 				stand: scores.value.player.score > scores.value.opponent.score ? 'winner' : 'looser',
