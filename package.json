@@ -1,19 +1,22 @@
 {
-  "name": "compeer",
-  "version": "0.1.0",
+  "name": "untest",
+  "description": "Learn by quick question answer competition with peers",
+  "author": "Shirsendu Bairagi <shirsendu2001@gmail.com>",
+  "version": "0.0.0",
   "private": true,
   "type": "module",
   "engines": {
     "node": "^20.12.2"
   },
+  "license": "MIT",
   "scripts": {
     "dev": "nuxt dev",
     "build": "nuxt build",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "start": "node .output/server/index.mjs",
-    "clean": "nuxt cleanup"
+    "clean": "nuxt cleanup",
+    "start": "node .output/server/index.mjs"
   },
   "dependencies": {
     "@nuxt/fonts": "^0.6.1",
@@ -30,9 +33,11 @@
     "nuxt-gtag": "^2.0.5",
     "nuxt-icons": "^3.2.1",
     "vue": "^3.4.21",
-    "vue-router": "^4.3.0"
+    "vue-router": "^4.3.0",
+    "yaml": "^2.4.2"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.27.1",
     "@types/canvas-confetti": "^1.6.4"
   }
 }

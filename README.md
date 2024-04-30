@@ -2,8 +2,8 @@
   <img src="./public/logo.png" lt="Logo" width="65" />
 <p>
 
-# Compeer
-> A Peer to Peer QnA Game
+# Untest
+> Learn by quick question answer competition with peers
 
 <p align="center">
   <a href="https://uptime.betterstack.com/?utm_source=status_badge">

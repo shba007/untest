@@ -1,3 +1,37 @@
+<script setup lang="ts">
+const title = `Untest`
+const description = `Learn by quick question answer competition with peers`
+const url = "https://untest.monalisa-bairagi.com"
+
+useSeoMeta({
+  ogType: "profile",
+  title: title,
+  ogTitle: title,
+  description: description,
+  ogDescription: description,
+  ogImage: url + "/previews/landing.webp",
+  ogImageWidth: 1280,
+  ogImageHeight: 640,
+  ogUrl: url,
+  fbAppId: 966242223397117,
+  twitterCard: "summary_large_image",
+  colorScheme: "dark light",
+})
+
+useSchemaOrg([
+  defineWebPage({
+    datePublished: new Date(2024, 4, 30).toISOString(),
+    dateModified: new Date(2024, 4, 30).toISOString(),
+    author: "Shirsendu Bairagi",
+  }),
+  defineWebSite({
+    url: url,
+    name: title,
+    description: description,
+  }),
+])
+</script>
+
 <template>
   <div>
     <NuxtLayout>
