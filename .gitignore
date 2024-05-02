@@ -23,5 +23,5 @@ logs
 .env.*
 !.env.example
 
-# ymls
-questions-*.yml
+# questions
+questions

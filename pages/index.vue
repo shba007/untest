@@ -1,10 +1,19 @@
 <script setup lang="ts">
 const router = useRouter()
-const user = useUserStore()
+const userStore = useUserStore()
+const authStore = useAuthStore()
 
-function onSubmit(value: string) {
-  user.updateName(value)
-  router.push({ path: '/room/psychology' })
+const name = computed(() => userStore.name)
+
+const { data, execute } = await useFetch('/api/auth/login', { method: 'post', body: { name }, immediate: false })
+
+async function onSubmit(value: string) {
+  userStore.updateName(value)
+  await execute()
+  if (data.value)
+    authStore.accessToken = data.value.accessToken
+
+  router.push({ path: '/test' })
 }
 </script>
 

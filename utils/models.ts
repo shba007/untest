@@ -3,5 +3,10 @@ export interface Question {
   question: string;
   options: string[];
   answer: number;
-  categories: string[];
+  tags: string[];
+}
+
+export interface Answer {
+  id: string;
+  answer: number;
 }

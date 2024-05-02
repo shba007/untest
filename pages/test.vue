@@ -1,27 +1,23 @@
 <script setup lang="ts">
-import type { Stats } from "~/pages/room/[id].vue";
-
 const props = defineProps<{
   topic: string;
 }>()
-const emit = defineEmits<{ (event: 'changeState', data: Stats): void }>()
 
-const { data: items, pending, error } = await useFetch(`/api/question/${props.topic}`)
+const router = useRouter()
 
-// TODO: Simplyfy
+const testStore = useTestStore()
+
+const { data, pending, error } = await useFetch(`/api/test`, { method: 'get', onRequest: authInterceptor })
+
+if (data.value) {
+  testStore.id = data.value.id
+  testStore.questions = data.value.questions
+}
+
 const { count: correctCount, inc: incCorrect } = useCounter(0, { min: 0, max: 10 })
 const { count: incorrectCount, inc: incIncorrect } = useCounter(0, { min: 0, max: 10 })
 const totalCount = computed(() => correctCount.value + incorrectCount.value)
-const score = ref({
-  correct: 0,
-  incorrect: 0
-})
-const scores = computed(() => ({
-  opponent: { score: score.value.incorrect, question: incorrectCount.value + 1 },
-  player: { score: score.value.correct, question: correctCount.value + 1 }
-}))
-const item = computed(() => items.value[totalCount.value])
-// TODO: Simplyfy
+const item = computed(() => testStore.questions![totalCount.value])
 
 const selectedAnswer = ref<number>()
 const isSubmitted = ref(false)
@@ -50,13 +46,10 @@ watch(remaining, () => {
 })
 
 function onSubmit() {
+  testStore.addAnswer({ id: item.value.id, answer: selectedAnswer.value! })
+
   isSubmitted.value = true
   future.value = now.value.getTime() + 2000
-
-  if (selectedAnswer.value === item.value.answer)
-    score.value.correct++
-  else
-    score.value.incorrect++
 }
 
 function calculateState(index: number) {
@@ -72,25 +65,17 @@ function calculateState(index: number) {
     return 'neutral'
 }
 
-const time = useInterval(1000)
-
-watch(totalCount, () => {
-  if (totalCount.value >= 10) {
-    emit('changeState',
-      {
-        stand: scores.value.player.score > scores.value.opponent.score ? 'winner' : 'looser',
-        correct: scores.value.player.score, wrong: scores.value.opponent.score,
-        time: time.value + 's'
-      }
-    )
+watch(testStore.answers, (value) => {
+  if (value.length >= 10) {
+    router.push({ path: '/result' })
   }
 })
-
 </script>
 
 <template>
   <main class="flex-1 relative flex flex-col gap-4">
-    <GameBar :opponent="scores.opponent" :player="scores.player" />
+    <GameBar :player="{ question: correctCount, score: correctCount }"
+      :opponent="{ question: incorrectCount, score: incorrectCount }" />
     <span class="opacity-50">Question {{ totalCount + 1 }}/10</span>
     <Transition mode="out-in" enter-active-class="transition duration-200 ease-out"
       enter-from-class="transform translate-x-20  opacity-0" enter-to-class="transform translate-x-0 opacity-100"

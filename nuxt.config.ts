@@ -21,7 +21,9 @@ export default defineNuxtConfig({
    }, */
   runtimeConfig: {
     private: {
-      rootDir: ''
+      rootDir: '',
+      testId: '',
+      authAccessSecret: ''
     },
   },
   colorMode: {
@@ -36,33 +38,13 @@ export default defineNuxtConfig({
   pwa: {
     registerType: 'autoUpdate',
     manifest: {
-      name: 'Shirsendu Bairagi',
-      short_name: 'Shirsendu Bairagi',
-      description: 'Shirsendu Bairagi is a Fullstack Developer',
+      name: 'Untes',
+      short_name: 'Untest',
+      description: 'Learn by quick question answer competition with peers',
       theme_color: '#0593FA',
       background_color: '#0593FA',
       orientation: 'portrait',
       shortcuts: [
-        {
-          'name': 'Contact Me',
-          'short_name': 'Contact',
-          'description': 'Contact with me via mail',
-          'url': 'https://shirsendu-bairagi.dev?contact',
-          'icons': [
-            {
-              src: '/pwa/email.png',
-              sizes: '512x512',
-              type: 'image/png',
-              purpose: 'any'
-            },
-            {
-              src: '/pwa/email-maskable.png',
-              sizes: '512x512',
-              type: 'image/png',
-              purpose: 'maskable'
-            }
-          ]
-        },
       ],
       icons: [
         {

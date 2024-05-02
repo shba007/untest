@@ -1,9 +1,9 @@
 export const useUserStore = defineStore('user', () => {
-	const name = useState<string | null>()
+  const name = ref<string | null>()
 
-	function updateName(value: string) {
-		name.value = value
-	}
+  function updateName(value: string) {
+    name.value = value
+  }
 
-	return { name, updateName }
+  return { name, updateName }
 })
