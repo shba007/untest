@@ -8,10 +8,18 @@ interface Request {
   answers: [{ id: string, answer: number }]
 }
 
+interface Timer {
+  startTime: number;
+  endTime: null;
+}
+
 export default defineEventHandler(async (event) => {
   try {
     const { testId, answers } = await readBody<Request>(event)
     const userId = readAuth(event)
+
+    const { startTime } = (await useStorage('data').getItem<Timer>(`test:${userId}:${testId}`))!
+    const endTime = Date.now()
 
     const { questions } = await prisma.test.findUniqueOrThrow({
       where: {
@@ -34,7 +42,7 @@ export default defineEventHandler(async (event) => {
         testId,
         correctCount,
         incorrectCount,
-        duration: 0
+        duration: (endTime - startTime) / 1000
       }
     })
 

@@ -23,15 +23,18 @@ export default defineEventHandler<Promise<Response>>(async (event) => {
   try {
     const config = useRuntimeConfig()
     const userId = readAuth(event)
+    const testId = config.private.testId
+
+    await useStorage('data').setItem(`test:${userId}:${testId}`, { startTime: Date.now(), endTime: null })
 
     const test = await prisma.test.findUniqueOrThrow({
       where: {
-        id: config.private.testId,
+        id: testId,
       }, include: { questions: true }
     })
 
     return {
-      id: config.private.testId,
+      id: testId,
       questions: shuffle(test.questions.map<Question>(({ id, question, options, answer, tags }) => {
         return {
           id: id.toString(),
