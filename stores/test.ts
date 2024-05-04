@@ -2,7 +2,7 @@ export const useTestStore = defineStore('test', () => {
   const id = ref<string | null>()
   const questions = ref<Question[]>([])
   const answers = ref<Answer[]>([])
-  const { counter: duration, resume, pause, reset, isActive } = useInterval(1000, { immediate: false, controls: true })
+  const { counter, resume, pause, reset, isActive } = useInterval(1000, { controls: true })
 
   const stats = computed(() => {
     const [correctCount, incorrectCount] = answers.value.reduce(([correctCount, incorrectCount], { id, answer }) => {
@@ -13,17 +13,18 @@ export const useTestStore = defineStore('test', () => {
       return (question.answer === answer) ? [correctCount + 1, incorrectCount] : [correctCount, incorrectCount + 1]
     }, [0, 0])
 
+    const duration = counter.value
+
     return {
       correctCount,
       incorrectCount,
-      duration: duration.value
+      duration,
     }
-  })
+  },)
 
   function addAnswer(answer: Answer) {
     if (!isActive) {
       reset()
-      resume()
     }
 
     answers.value.push(answer)
@@ -32,7 +33,6 @@ export const useTestStore = defineStore('test', () => {
   function getResult() {
     if (isActive) {
       pause()
-      reset()
     }
 
     return {

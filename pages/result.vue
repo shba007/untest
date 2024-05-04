@@ -10,12 +10,15 @@ const { data, pending, error } = await useFetch(`/api/test`, {
 })
 
 onMounted(() => {
-  testStore.answers = []
   confetti({
     particleCount: 100,
     spread: 70,
     origin: { y: 0.6 }
   })
+})
+
+onBeforeUnmount(()=>{
+  testStore.answers = []
 })
 </script>
 
@@ -25,7 +28,7 @@ onMounted(() => {
       <Avatar :name="userStore.name ?? ''" />
     </section>
     <h2 class="text-xl">{{ userStore.name?.split(' ')[0] }}'s Report</h2>
-    <section v-if="data && !error" class="mb-auto flex justify-between items-start w-full">
+    <section v-if="data"  class="mb-auto flex justify-between items-start w-full">
       <PointCard topic="correct" :point="data.correctCount" color="blue" />
       <PointCard topic="wrong" :point="data.incorrectCount" color="red" />
       <PointCard topic="duration" :point="data.duration" color="green" />
