@@ -1,8 +1,4 @@
 <script setup lang="ts">
-const props = defineProps<{
-  topic: string;
-}>()
-
 const router = useRouter()
 
 const testStore = useTestStore()

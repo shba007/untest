@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import confetti from 'canvas-confetti';
-import type { Stats } from 'fs';
 
 const userStore = useUserStore()
 const testStore = useTestStore()
