@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client"
+import { Prisma, PrismaClient } from "@prisma/client"
 import JWT from 'jsonwebtoken'
 
 const prisma = new PrismaClient()
@@ -19,9 +19,9 @@ function preprocess(name: string) {
 }
 
 export default defineEventHandler(async (event) => {
+  const { name } = await readBody<Request>(event)
   try {
     const config = useRuntimeConfig()
-    const { name } = await readBody<Request>(event)
 
     let processedName = preprocess(name)
 
@@ -44,6 +44,11 @@ export default defineEventHandler(async (event) => {
 
     if (error?.statusCode)
       throw error
+
+    if (error instanceof Prisma.PrismaClientKnownRequestError) {
+      if (error.code === 'P2025')
+        throw createError({ statusCode: 404, statusMessage: `${name} user not found` })
+    }
 
     throw createError({ statusCode: 500, statusMessage: "Some Unknown Error Found" })
   }
