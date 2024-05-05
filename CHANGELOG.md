@@ -1,5 +1,11 @@
 # untest
 
+## 0.2.2
+
+### Patch Changes
+
+- 121e85b: chore: deploy.yml updated
+
 ## 0.2.1
 
 ### Patch Changes
