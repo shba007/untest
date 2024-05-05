@@ -1,5 +1,12 @@
 # untest
 
+## 0.2.1
+
+### Patch Changes
+
+- 4f80083: feat: added timer calculation in backend
+- 44242de: feat: email address as verification added
+
 ## 0.2.0
 
 ### Minor Changes
