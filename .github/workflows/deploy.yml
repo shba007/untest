@@ -31,13 +31,9 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: portfolio-shirsendu
+          name: untest-monalisa
           path: |
             .output
-            projects.yml
-            experiences.yml
-            hackathons.yml
-            certificates.yml
           if-no-files-found: error
 
   deploy:
@@ -57,4 +53,4 @@ jobs:
           overwrite: true
           rm: true
           source: '/*'
-          target: ~/untest
+          target: ~/untest-monalisa
