@@ -15,7 +15,9 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare && prisma generate",
+    "db:start": "cockroach start-single-node --insecure --listen-addr=localhost --store=database",
     "db:seed": "prisma db seed",
+    "db:backup": "npx tsx prisma/scripts/backup.ts",
     "db:pull": "prisma db pull",
     "db:push": "prisma db push",
     "db:migrate": "prisma migrate dev",
@@ -30,10 +32,8 @@
   },
   "dependencies": {
     "@prisma/client": "^5.13.0",
-    "canvas-confetti": "^1.9.2",
+    "canvas-confetti": "^1.9.3",
     "jsonwebtoken": "^9.0.2",
-    "vue": "^3.4.26",
-    "vue-router": "^4.3.2",
     "yaml": "^2.4.2"
   },
   "devDependencies": {
@@ -48,7 +48,7 @@
     "@pinia/nuxt": "^0.5.1",
     "@types/canvas-confetti": "^1.6.4",
     "@types/jsonwebtoken": "^9.0.6",
-    "@types/node": "^20.12.7",
+    "@types/node": "^20.12.8",
     "@vite-pwa/nuxt": "^0.7.0",
     "@vueuse/nuxt": "^10.9.0",
     "nuxt": "^3.11.2",
@@ -56,6 +56,8 @@
     "nuxt-icons": "^3.2.1",
     "prisma": "^5.13.0",
     "ts-node": "^10.9.2",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "vue": "^3.4.26",
+    "vue-router": "^4.3.2"
   }
 }

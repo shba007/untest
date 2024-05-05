@@ -8,6 +8,8 @@ concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 env:
   NITRO_PRESET: ${{ vars.NITRO_PRESET }}
+  NUXT_PUBLIC_API_URL: ${{ vars.NUXT_PUBLIC_API_URL }}
+  NUXT_PUBLIC_AUTH_URL: ${{ vars.NUXT_PUBLIC_AUTH_URL }}
 
 jobs:
   build:
@@ -31,7 +33,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: untest-monalisa
+          name: artifact
           path: |
             .output
           if-no-files-found: error
@@ -43,14 +45,18 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v4
 
+      - name: Display structure of downloaded files
+        run: ls -R -a
+
       - name: Upload artifact to VPS
-        uses: appleboy/scp-action@v0.1.4
+        uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           port: 22
+          source: artifact/*
+          target: ~/untest-monalisa/
           overwrite: true
           rm: true
-          source: '/*'
-          target: ~/untest-monalisa
+          strip_components: 1
