@@ -21,7 +21,6 @@ export default defineNuxtConfig({
    }, */
   runtimeConfig: {
     private: {
-      rootDir: '',
       testId: '',
       authAccessSecret: ''
     },
