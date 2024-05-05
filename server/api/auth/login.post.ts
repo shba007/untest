@@ -4,38 +4,42 @@ import JWT from 'jsonwebtoken'
 const prisma = new PrismaClient()
 
 interface Request {
-  name: string
+  email: string
 }
 
 interface Response {
-  accessToken: string,
-  refreshToken: string
+  name: string;
+  accessToken: string;
+  refreshToken: string;
 }
 
-function preprocess(name: string) {
-  name = name.trim()
-  name = name.toLowerCase()
-  return name.split(" ").map((word) => word[0].toUpperCase() + word.slice(1)).join(" ")
+function preprocess(text: string) {
+  text = text.trim()
+  text = text.toLowerCase()
+  // return text.split(" ").map((word) => word[0].toUpperCase() + word.slice(1)).join(" ")
+  return text
 }
 
-export default defineEventHandler(async (event) => {
-  const { name } = await readBody<Request>(event)
+export default defineEventHandler<Promise<Response>>(async (event) => {
+  const { email } = await readBody<Request>(event)
   try {
     const config = useRuntimeConfig()
 
-    let processedName = preprocess(name)
+    const processedEmail = preprocess(email)
 
     const user = await prisma.user.findFirstOrThrow({
       where: {
-        name: processedName
+        email: processedEmail
       }, select: {
-        id: true
+        id: true,
+        name: true
       }
     })
 
     let accessToken = JWT.sign({ id: user.id }, config.private.authAccessSecret, { expiresIn: '7d' })
 
     return {
+      name: user.name,
       accessToken: accessToken,
       refreshToken: ''
     }
@@ -47,7 +51,7 @@ export default defineEventHandler(async (event) => {
 
     if (error instanceof Prisma.PrismaClientKnownRequestError) {
       if (error.code === 'P2025')
-        throw createError({ statusCode: 404, statusMessage: `${name} user not found` })
+        throw createError({ statusCode: 404, statusMessage: `${email} user not found` })
     }
 
     throw createError({ statusCode: 500, statusMessage: "Some Unknown Error Found" })
