@@ -1,52 +1,37 @@
 import { PrismaClient } from "@prisma/client";
-import { Question } from "~/utils/models";
 
 const prisma = new PrismaClient()
 
-function shuffle<T>(array: T[]): T[] {
-  const shuffledArray = [...array];
-
-  for (let i = shuffledArray.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
-  }
-
-  return shuffledArray;
-}
-
-interface Response {
-  id: string,
-  questions: Question[]
-}
-
-export default defineEventHandler<Promise<Response>>(async (event) => {
+export default defineEventHandler(async (event) => {
   try {
-    const config = useRuntimeConfig()
     const userId = readAuth(event)
-    const testId = config.private.testId
 
-    await useStorage('data').setItem(`test:${userId}:${testId}`, { startTime: Date.now(), endTime: null })
-
-    const test = await prisma.test.findUniqueOrThrow({
-      where: {
-        id: testId,
-      }, include: { questions: true }
+    const tests = await prisma.test.findMany({
+      orderBy: {
+        createdAt: "asc"
+      }, select: {
+        id: true,
+        createdAt: true,
+        updatedAt: true
+      }
     })
 
-    return {
-      id: testId,
-      questions: shuffle(test.questions.map<Question>(({ id, question, options, answer, tags }) => {
-        return {
-          id: id.toString(),
-          question: question,
-          options: options,
-          answer: answer,
-          tags: tags as string[]
-        }
-      }))
-    }
+    const userTests = (await prisma.result.findMany({
+      where: {
+        userId
+      }, select: {
+        testId: true
+      }
+    })).map(({ testId }) => testId)
+
+    return tests.map(({ id, createdAt, updatedAt }) => ({
+      id, createdAt, updatedAt, isComplete: userTests.includes(id)
+    }))
   } catch (error: any) {
     console.error("API test GET", error)
+
+    if (error?.statusCode)
+      throw error
 
     throw createError({ statusCode: 500, statusMessage: "Some Unknown Error Found" })
   }

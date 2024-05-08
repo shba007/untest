@@ -1,9 +1,11 @@
 <script setup lang="ts">
+const route = useRoute()
 const router = useRouter()
 
 const testStore = useTestStore()
+const testId = route.params.id
 
-const { data, pending, error } = await useFetch(`/api/test`, { method: 'get', onRequest: authInterceptor })
+const { data, pending, error } = await useFetch(`/api/test/${testId}`, { method: 'get', onRequest: authInterceptor })
 
 if (data.value) {
   testStore.id = data.value.id
