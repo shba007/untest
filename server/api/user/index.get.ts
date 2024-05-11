@@ -25,17 +25,21 @@ function sortByRaking(data: Response[]) {
 export default defineEventHandler<Promise<Response[]>>(async (event) => {
   try {
     const query = getQuery(event)
-    // const userId = readAuth(event)
+    const userId = readAuth(event)
 
     const dateRange = {
       start: query.start ? new Date(query.start as string) : null,
       end: query.end ? new Date(query.end as string) : null
     }
 
+    const user = await prisma.user.findUniqueOrThrow({
+      where: { id: userId }
+    })
+
     const users = await prisma.user.findMany({
-      where: {
-        role: Role.USER
-      },
+      where: user.role === 'STUDENT' ? {
+        role: Role.STUDENT
+      } : {},
       include: {
         results: true
       }

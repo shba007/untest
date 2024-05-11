@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient, Role } from "@prisma/client";
 
 const prisma = new PrismaClient()
 
@@ -6,26 +6,33 @@ export default defineEventHandler(async (event) => {
   try {
     const userId = readAuth(event)
 
+    // TODO add Role to JWT
+    const user = await prisma.user.findUniqueOrThrow({
+      where: {
+        id: userId
+      }, include: {
+        results: true
+      }
+    })
+
     const tests = await prisma.test.findMany({
+      where: user.role === Role.STUDENT ? {
+        isDraft: false
+      } : {},
       orderBy: {
         createdAt: "asc"
       }, select: {
         id: true,
         createdAt: true,
-        updatedAt: true
+        updatedAt: true,
+        isDraft: true
       }
     })
 
-    const userTests = (await prisma.result.findMany({
-      where: {
-        userId
-      }, select: {
-        testId: true
-      }
-    })).map(({ testId }) => testId)
+    const userTests = user.results.map(({ testId }) => testId)
 
-    return tests.map(({ id, createdAt, updatedAt }) => ({
-      id, createdAt, updatedAt, isComplete: userTests.includes(id)
+    return tests.map(({ id, createdAt, updatedAt, isDraft }) => ({
+      id, createdAt, updatedAt, isDraft, isComplete: userTests.includes(id),
     }))
   } catch (error: any) {
     console.error("API test GET", error)

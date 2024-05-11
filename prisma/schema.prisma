@@ -14,7 +14,8 @@ datasource db {
 }
 
 enum Role {
-  USER
+  STUDENT @map("USER")
+  TEACHER
   ADMIN
 }
 
@@ -23,7 +24,7 @@ model User {
   name      String
   email     String?  @unique
   image     String?
-  role      Role     @default(USER)
+  role      Role     @default(STUDENT)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt()
   results   Result[]
@@ -33,6 +34,7 @@ model Test {
   id        String     @id @default(uuid())
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt()
+  isDraft   Boolean    @default(true)
   questions Question[]
   results   Result[]
 }

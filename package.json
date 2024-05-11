@@ -17,7 +17,7 @@
     "postinstall": "nuxt prepare && prisma generate",
     "db:start": "cockroach start-single-node --insecure --listen-addr=localhost --store=database",
     "db:seed": "prisma db seed",
-    "db:backup": "npx tsx prisma/scripts/backup.ts",
+    "db:backup": "npx tsx prisma/backup.ts",
     "db:pull": "prisma db pull",
     "db:push": "prisma db push",
     "db:migrate": "prisma migrate dev",

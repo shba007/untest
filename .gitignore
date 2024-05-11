@@ -24,4 +24,4 @@ logs
 !.env.example
 
 # questions
-questions
+prisma/data

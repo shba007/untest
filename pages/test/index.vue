@@ -17,6 +17,7 @@ function goToTest(id: string, isComplete: boolean) {
         :color="index % 2 === 0 ? 'red' : 'blue'" :done="isComplete" @click="goToTest(id, isComplete)" />
     </section>
     <span />
+    <AppButton title="Go to Leanderboard" href="/leaderboard" class="mt-auto" />
     <!-- <h1>Join a Room</h1> -->
     <!-- <AppInput placeholder="Code" title="Join" /> -->
   </main>

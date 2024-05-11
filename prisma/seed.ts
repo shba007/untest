@@ -1,4 +1,4 @@
-import { PrismaClient, Tag } from "@prisma/client";
+import { PrismaClient, Role, Tag } from "@prisma/client";
 import { faker } from '@faker-js/faker';
 
 import fs from "node:fs";
@@ -7,15 +7,24 @@ import yaml from "yaml";
 
 const prisma = new PrismaClient();
 
-function readFile<T>(fileName: string) {
-  const filePath = path.join(process.cwd(), '/prisma/data/', fileName + ".yml")
+function readFileConstractor<T>(fileName: string, type: 'seed' | 'backup') {
+  const filePath = path.join(process.cwd(), `/prisma/data/${type}/${fileName}.yml`)
   const fileContents = fs.readFileSync(filePath, "utf8");
   return yaml.parse(fileContents) as T[]
+}
+
+function readFile<T>(fileName: string) {
+  return readFileConstractor<T>(fileName, 'seed')
 }
 
 interface User {
   id: string,
   name: string,
+  email: string,
+  image: string,
+  role: string,
+  createdAt: Date
+  updatedAt: Date
   results: {
     testId: string;
     date: string
@@ -29,16 +38,23 @@ interface Test {
   id: string;
   createdAt: Date;
   updatedAt: Date;
-  questions: string[];
+  questions: Question[];
 }
 
 async function createUsers() {
   const fileUsers = readFile<User>('users')
 
+  console.log({ fileUsers })
+
   await prisma.user.createMany({
-    data: fileUsers.map(({ id, name }) => ({
+    data: fileUsers.map(({ id, name, email, image, role, createdAt, updatedAt }) => ({
       id,
-      name
+      name,
+      email,
+      image,
+      role: role.toUpperCase() as Role,
+      createdAt,
+      updatedAt
     }))
   })
 
@@ -60,38 +76,28 @@ async function createTests() {
 
   console.log({ tests })
 
-  return tests.map(({ id, createdAt, updatedAt }) => ({
+  return tests.map(({ id, isDraft, createdAt, updatedAt }) => ({
     id,
+    isDraft,
     createdAt,
     updatedAt,
-    questions:
-      fileTests.find((test) => test.id === id)!.questions
+    questions: fileTests.find((test) => test.id === id)!.questions
   }))
 }
 
-async function createQuestions(tests: Test[]) {
-  const fileQuestions = readFile<Question>('questions')
-  const questionTestMap: { [question: string]: string } =
-    tests.reduce((acc, { id: testId, questions }) => {
-      return {
-        ...acc, ...questions.reduce((acc, questionId) => {
-          acc[questionId] = testId
-          return acc
-        }, {} as { [question: string]: string })
-      }
-    }, {} as { [question: string]: string })
-
-  console.log({ questionTestMap })
+async function createQuestions() {
+  const fileTests = readFile<Test>('tests')
 
   await prisma.question.createMany({
-    data: fileQuestions.map(({ id, question, options, answer, tags }) => ({
-      testId: questionTestMap[id],
-      id: parseInt(id, 10),
-      question,
-      options,
-      answer,
-      tags: tags.map((category) => category.toUpperCase()) as Tag[]
-    }))
+    data: fileTests.flatMap(({ id: testId, questions }) =>
+      questions.map(({ id, question, options, answer, tags }) => ({
+        testId,
+        id: parseInt(id, 10),
+        question,
+        options,
+        answer,
+        tags: tags.map((category) => category.toUpperCase()) as Tag[]
+      })))
   })
 }
 
@@ -123,13 +129,43 @@ async function createTestUser() {
   return user
 }
 
+async function createTest() {
+  const filePath = path.join(process.cwd(), `/prisma/data/questions.json`)
+  const fileContents = fs.readFileSync(filePath, "utf8");
+  const questions = JSON.parse(fileContents) as Question[]
+
+  console.log({ questions })
+
+  const test = await prisma.test.create({
+    data: {
+      // id: "1ecbb214-6fb8-4937-975b-13213e3c3c11",
+      questions: {
+        createMany: {
+          data: questions.slice(0, 10).map(({ question, options, answer, tags }, index) => ({
+            id: index + 71,
+            question,
+            options,
+            answer,
+            tags: tags.map((tag) => tag.toUpperCase()) as Tag[]
+          }))
+        }
+      }
+    }
+  })
+
+  console.log({ test })
+
+  return test
+}
+
 async function main() {
   // const users = await createUsers()
   // const tests = await createTests()
-  // const questions = await createQuestions(tests)
+  // const questions = await createQuestions()
   // const results = await createResults()
 
-  await createTestUser()
+  // await createTestUser()
+  const test = await createTest()
 }
 
 main()

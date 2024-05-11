@@ -30,7 +30,7 @@ const dateRageStart = computed(() => {
 })
  */
 
-const { data: users } = await useFetch('/api/user', { query: { start: dateRageStart } })
+const { data: users } = await useFetch('/api/user', { method: 'get', onRequest: authInterceptor, query: { start: dateRageStart } })
 </script>
 
 <template>
