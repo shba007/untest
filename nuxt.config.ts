@@ -14,6 +14,7 @@ export default defineNuxtConfig({
     "nuxt-gtag",
     "nuxt-icons",
   ],
+  ssr: false,
   /*  nitro: {
      experimental: {
        websocket: true

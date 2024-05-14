@@ -33,17 +33,29 @@ export default defineEventHandler<Promise<Response[]>>(async (event) => {
       where: { id: userId }
     })
 
+    const testIds = (await prisma.test.findMany({
+      select: {
+        id: true
+      },
+      orderBy: {
+        createdAt: 'desc'
+      },
+      take: lastCount
+    })).map(({ id }) => id)
+
     const users = await prisma.user.findMany({
       where: user.role === 'STUDENT' ? {
         role: Role.STUDENT
       } : {},
       include: {
         results: {
-          orderBy: {
+          where: {
             test: {
-              createdAt: 'desc'
+              id: {
+                in: testIds
+              }
             }
-          }, take: lastCount
+          },
         }
       }
     })
