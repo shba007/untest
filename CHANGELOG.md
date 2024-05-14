@@ -1,5 +1,12 @@
 # untest
 
+## 0.2.3
+
+### Patch Changes
+
+- e138ac1: feat: backup script added, users more field added, role based api calling added
+- 3c9befb: feat: leaderboard range selection changed, app button disable style added
+
 ## 0.2.2
 
 ### Patch Changes
