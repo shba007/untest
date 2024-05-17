@@ -1,27 +1,27 @@
 <script setup lang="ts">
-const datePresets = [{
+const lastCountPresets = [{
   id: '1',
   title: 'daily',
-  dateStart: '2024-05-04'
+  count: 1
 }, {
   id: '2',
   title: 'weekly',
-  dateStart: '2024-04-27'
+  count: 7
 }, /* {
   id: '3',
   title: 'this month',
-  dateStart: '2024-04-04'
+  count: '2024-04-04'
 }, */ {
   id: '4',
   title: 'all time',
-  dateStart: '2024-04-29'
+  count: 100
 }]
 
-const activeDatePresetId = ref<string | null>('1')
+const activeLastCountId = ref<string | null>('1')
 
-const dateRageStart = computed(() => {
-  const datePreset = datePresets.find(({ id }) => id == activeDatePresetId.value)!
-  return datePreset.dateStart
+const lastCount = computed(() => {
+  const datePreset = lastCountPresets.find(({ id }) => id == activeLastCountId.value)!
+  return datePreset.count
 })
 
 /* const dateRageEnd = computed(() => {
@@ -30,15 +30,15 @@ const dateRageStart = computed(() => {
 })
  */
 
-const { data: users } = await useFetch('/api/user', { method: 'get', onRequest: authInterceptor, query: { start: dateRageStart } })
+const { data: users } = await useFetch('/api/user', { method: 'get', onRequest: authInterceptor, query: { lastCount: lastCount } })
 </script>
 
 <template>
   <main class="flex flex-col gap-8 items-center justify-start h-screen">
     <h1 class="text-xl text-center align-middle">Leaderboard</h1>
     <div class="flex gap-2 w-full">
-      <button v-for="{ id, title } in datePresets" :key="id" class="flex-1 px-2 py-3  rounded-full capitalize"
-        :class="activeDatePresetId === id ? 'bg-primary-500' : 'bg-dark-500'" @click="activeDatePresetId = id">{{ title
+      <button v-for="{ id, title } in lastCountPresets" :key="id" class="flex-1 px-2 py-3  rounded-full capitalize"
+        :class="activeLastCountId === id ? 'bg-primary-500' : 'bg-dark-500'" @click="activeLastCountId = id">{{ title
         }}</button>
     </div>
     <ul v-if="users" class="flex flex-col gap-6 w-full">
@@ -56,6 +56,6 @@ const { data: users } = await useFetch('/api/user', { method: 'get', onRequest: 
         </div>
       </li>
     </ul>
-    <AppButton title="Go to main" href="/" class="mt-auto" />
+    <AppButton title="Go to main" href="/test" class="mt-auto" />
   </main>
 </template>

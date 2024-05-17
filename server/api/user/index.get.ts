@@ -27,10 +27,7 @@ export default defineEventHandler<Promise<Response[]>>(async (event) => {
     const query = getQuery(event)
     const userId = readAuth(event)
 
-    const dateRange = {
-      start: query.start ? new Date(query.start as string) : null,
-      end: query.end ? new Date(query.end as string) : null
-    }
+    const lastCount = parseInt(query.lastCount!.toString()) ?? 3
 
     const user = await prisma.user.findUniqueOrThrow({
       where: { id: userId }
@@ -41,22 +38,19 @@ export default defineEventHandler<Promise<Response[]>>(async (event) => {
         role: Role.STUDENT
       } : {},
       include: {
-        results: true
+        results: {
+          orderBy: {
+            test: {
+              createdAt: 'desc'
+            }
+          }, take: lastCount
+        }
       }
     })
 
     return sortByRaking(users.map(({ id, name, results }) => {
-      const [totalCorrectCount, totalIncorrectCount, totalDuration] = results
-        .filter(({ date }) => {
-          if (dateRange.start && !(dateRange.start <= date))
-            return false
-
-          if (dateRange.end && !(date <= dateRange.end))
-            return false
-
-          return true
-        })
-        .reduce(([totalCorrectCount, totalIncorrectCount, totalDuration], { correctCount, incorrectCount, duration }) =>
+      const [totalCorrectCount, totalIncorrectCount, totalDuration] =
+        results.reduce(([totalCorrectCount, totalIncorrectCount, totalDuration], { correctCount, incorrectCount, duration }) =>
           [totalCorrectCount + correctCount, totalIncorrectCount + incorrectCount, totalDuration + duration]
           , [0, 0, 0])
 

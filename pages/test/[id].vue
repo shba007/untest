@@ -88,7 +88,7 @@ watch(testStore.answers, (value) => {
         </ul>
       </div>
     </Transition>
-    <AppButton :title="remaining ? `Next in ${remaining.toFixed(0)}` : 'Submit'" :disabled="!!remaining"
-      @submit="onSubmit" />
+    <AppButton :title="remaining ? `Next in ${remaining.toFixed(0)}` : 'Submit'"
+      :disabled="!!remaining || selectedAnswer === undefined" @submit="onSubmit" />
   </main>
 </template>

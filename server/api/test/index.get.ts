@@ -16,7 +16,7 @@ export default defineEventHandler(async (event) => {
     })
 
     const tests = await prisma.test.findMany({
-      where: user.role === Role.STUDENT ? {
+      where: user.role === 'STUDENT' ? {
         isDraft: false
       } : {},
       orderBy: {
