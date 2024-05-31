@@ -1,12 +1,18 @@
 <script setup lang="ts">
 const router = useRouter()
+const testStore = useTestStore()
 
 const { data: days } = await useFetch('/api/test', { method: 'get', onRequest: authInterceptor })
 
 function goToTest(id: string, isComplete: boolean) {
+
   if (!isComplete)
     router.push({ path: `/test/${id}` })
 }
+
+onMounted(() => {
+  testStore.reset()
+})
 </script>
 
 <template>

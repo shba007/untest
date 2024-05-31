@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { Question } from "~/utils/models";
+import { TestData } from "./answer/[id].post";
 
 const prisma = new PrismaClient()
 
@@ -27,7 +28,9 @@ export default defineEventHandler<Promise<Response>>(async (event) => {
     if (!testId)
       throw createError({ statusCode: 400, statusMessage: 'testId is not defined' })
 
-    await useStorage('data').setItem(`test:${userId}:${testId}`, { startTime: Date.now(), endTime: null })
+    const testData = await useStorage('data').getItem<TestData>(`test:${userId}:${testId}`)
+    if (!testData)
+      await useStorage('data').setItem(`test:${userId}:${testId}`, { startTime: Date.now(), endTime: null, answers: [] })
 
     const test = await prisma.test.findUniqueOrThrow({
       where: {
@@ -48,7 +51,7 @@ export default defineEventHandler<Promise<Response>>(async (event) => {
       }))
     }
   } catch (error: any) {
-    console.error("API test GET", error)
+    console.error("API test/[id] GET", error)
 
     if (error?.statusCode)
       throw error

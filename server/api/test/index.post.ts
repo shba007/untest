@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client"
 import { readAuth } from "~/server/utils/authHandler";
+import { TestData } from "./answer/[id].post";
 
 const prisma = new PrismaClient()
 
@@ -8,17 +9,17 @@ interface Request {
   answers: [{ id: string, answer: number }]
 }
 
-interface Timer {
-  startTime: number;
-  endTime: null;
-}
-
 export default defineEventHandler(async (event) => {
   try {
-    const { testId, answers } = await readBody<Request>(event)
+    // TODO: Remove answers from the final Submission
+    const { testId } = await readBody<Request>(event)
     const userId = readAuth(event)
 
-    const { startTime } = (await useStorage('data').getItem<Timer>(`test:${userId}:${testId}`))!
+    const testData = await useStorage('data').getItem<TestData>(`test:${userId}:${testId}`)
+    if (!testData)
+      throw createError({ statusCode: 400, statusMessage: 'testData is not defined' })
+
+    const { startTime, answers } = testData
     const endTime = Date.now()
 
     const { questions } = await prisma.test.findUniqueOrThrow({

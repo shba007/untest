@@ -43,11 +43,14 @@ watch(remaining, () => {
   }
 })
 
-function onSubmit() {
-  testStore.addAnswer({ id: item.value.id, answer: selectedAnswer.value! })
+async function onSubmit() {
+  const answerData = { id: item.value.id, answer: selectedAnswer.value! }
+  testStore.addAnswer(answerData)
 
   isSubmitted.value = true
   future.value = now.value.getTime() + 2000
+
+  await useFetch(`/api/test/answer/${testId}`, { method: 'post', body: answerData, onRequest: authInterceptor })
 }
 
 function calculateState(index: number) {
