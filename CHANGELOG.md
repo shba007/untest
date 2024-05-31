@@ -1,5 +1,12 @@
 # untest
 
+## 0.2.4
+
+### Patch Changes
+
+- 025c766: fix: leaderboard algorithm fixed
+- 3cb03f5: fix: test answer submit manupulation fixed
+
 ## 0.2.3
 
 ### Patch Changes
