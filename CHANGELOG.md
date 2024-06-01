@@ -1,5 +1,11 @@
 # untest
 
+## 0.2.5
+
+### Patch Changes
+
+- f04ceea: chore: pkgs updated and distro upgrade
+
 ## 0.2.4
 
 ### Patch Changes
